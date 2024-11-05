@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.0.1] - 2024-11-05
+### Added
+- Support for querying enum fields without prefix (e.g., `where(status: :active)` now works alongside `where(_status: :active)`)
+
 ## [1.0.0] - 2024-11-05
 ### Added
 - Support for Ruby 2.6 through 3.2
