@@ -1,8 +1,8 @@
 # Mongoid::Enum
 
-[![Build
-Status](https://travis-ci.org/thetron/mongoid-enum.png)](https://travis-ci.org/thetron/mongoid-enum)
-[![Code Climate](https://codeclimate.com/github/thetron/mongoid-enum.png)](https://codeclimate.com/github/thetron/mongoid-enum)
+The goal of this fork is to make the gem compatible with Mongoid 7 and Ruby 3+ while maintaining the original functionality and spirit of the gem.
+
+This is a fork of [boie0025's fork](https://github.com/boie0025/mongoid-enum) of the original [mongoid-enum](https://github.com/thetron/mongoid-enum) gem.
 
 Heavily inspired by [DHH's
 ActiveRecord::Enum](https://github.com/rails/rails/commit/db41eb8a6ea88b854bf5cd11070ea4245e1639c5), this little library is
@@ -141,7 +141,7 @@ user.administrator? # => false
 user.roles # => [:basic, :manager]
 ```
 
-Since the underlying datatype for storing values is an array, if you 
+Since the underlying datatype for storing values is an array, if you
 need to specify default(s), ensure you use an array:
 
 ```ruby
@@ -166,3 +166,13 @@ If you have any problems, or you have a suggestion, please [submit an
 issue](https://github.com/thetron/mongoid-enum/issues) (and a failing
 test, if you can). Pull requests and feature requests are alwasy welcome
 and greatly appreciated.
+
+## Compatibility Matrix
+
+| Ruby Version | Mongoid 7.x |
+|-------------|-------------|
+| 2.6         | ✅          |
+| 2.7         | ✅          |
+| 3.0         | ✅          |
+| 3.1         | ✅          |
+| 3.2         | ✅          |
