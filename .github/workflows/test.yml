@@ -26,8 +26,12 @@ jobs:
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: ${{ matrix.ruby-version }}
-        bundler-cache: true
+    - name: Update RubyGems and Bundler
+      run: |
+        gem update --system
+        gem install bundler -v 2.4.22
     - name: Install dependencies
-      run: bundle install
+      run: |
+        bundle _2.4.22_ install
     - name: Run tests
       run: bundle exec rspec
