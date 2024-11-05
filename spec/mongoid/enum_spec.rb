@@ -264,4 +264,42 @@ describe Mongoid::Enum do
           .to yield_with_args Mongoid::Enum.configuration
     end
   end
+
+  describe "querying" do
+    before do
+      instance.save
+      instance.banned!
+    end
+
+    it "allows querying by field name with string" do
+      expect(User.where(status: "banned").first).to eq instance
+    end
+
+    it "allows querying by field name with symbol" do
+      expect(User.where(status: :banned).first).to eq instance
+    end
+
+    it "allows querying by prefixed field name" do
+      expect(User.where(_status: :banned).first).to eq instance
+    end
+
+    context "when multiple" do
+      before do
+        instance.author!
+        instance.editor!
+      end
+
+      it "allows querying by field name with string" do
+        expect(User.where(roles: "author").first).to eq instance
+      end
+
+      it "allows querying by field name with symbol" do
+        expect(User.where(roles: :author).first).to eq instance
+      end
+
+      it "allows querying by prefixed field name" do
+        expect(User.where(_roles: :author).first).to eq instance
+      end
+    end
+  end
 end

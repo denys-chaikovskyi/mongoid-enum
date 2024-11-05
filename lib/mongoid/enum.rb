@@ -37,7 +37,10 @@ module Mongoid
 
       def create_field(field_name, options)
         type = options[:multiple] && Array || Symbol
-        field field_name, :type => type, :default => options[:default]
+        field field_name,
+              type: type,
+              default: options[:default],
+              as: field_name.to_s.sub(Mongoid::Enum.configuration.field_name_prefix, "")
       end
 
       def create_validations(field_name, values, options)
