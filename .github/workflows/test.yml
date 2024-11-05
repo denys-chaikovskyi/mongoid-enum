@@ -26,12 +26,17 @@ jobs:
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: ${{ matrix.ruby-version }}
-    - name: Update RubyGems and Bundler
+    - name: Update RubyGems and Bundler (Ruby >= 3.0)
+      if: ${{ matrix.ruby-version >= '3.0' }}
       run: |
         gem update --system
         gem install bundler -v 2.4.22
+    - name: Update Bundler (Ruby < 3.0)
+      if: ${{ matrix.ruby-version < '3.0' }}
+      run: |
+        gem install bundler -v '~> 2.3.0'
     - name: Install dependencies
       run: |
-        bundle _2.4.22_ install
+        bundle install
     - name: Run tests
       run: bundle exec rspec
